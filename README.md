@@ -1,5 +1,4 @@
-# Proof-of-Concept — Heisenberg-gate layers toward a Quantum Spin Liquid, *without* Hamiltonian calibration
-
+# Proof-of-Concept: Heisenberg-gate layers toward a Quantum Spin Liquid, *without* Hamiltonian calibration
 
 ## The idea
 
@@ -21,18 +20,9 @@ Beyond the energy (all vs. exact diagonalization): on 12 sites the ansatz reprod
 
 ## Method highlights
 
-- **Adjoint (backprop-style) analytic gradient** for the HVA on a fast tensor-contraction
-  statevector engine — the full gradient at ~3× the cost of one energy evaluation.
-  This is what breaks the optimization plateau (COBYLA stalls at ~4 %).
-- **Two-phase hybrid recipe** (the PoC's methodological contribution): explore cheaply
-  with a *symmetric* HVA (one θ per edge-color class, ~5 params/layer), expand the
-  solution to per-bond parameters (identical state, freer parametrization), then refine
-  with the full HVA. Strictly better than a full sweep at equal compute budget.
-- **MPS scaling with an honest double-χ protocol** (optimize at χ=64, quote at χ=128):
-  reaches 26–47 sites, establishes the defect-triangle gap baselines, and *measures*
-  where Aer-MPS stops being faithful (deep circuits at 47 qubits). The notebook's
-  debugging notes document every failure mode found and the evidence used to fix or
-  rule out each candidate solution.
+- **Adjoint (backprop-style) analytic gradient** for the HVA on a fast tensor-contraction statevector engine — the full gradient at ~3× the cost of one energy evaluation. This is what breaks the optimization plateau (COBYLA stalls at ~4 %).
+- **Two-phase hybrid recipe** (the PoC's methodological contribution): explore cheaply with a *symmetric* HVA (one θ per edge-color class, ~5 params/layer), expand the solution to per-bond parameters (identical state, freer parametrization), then refine with the full HVA. Strictly better than a full sweep at equal compute budget.
+- **MPS scaling with an honest double-χ protocol** (optimize at χ=64, quote at χ=128): reaches 26–47 sites, establishes the defect-triangle gap baselines, and *measures* where Aer-MPS stops being faithful (deep circuits at 47 qubits). The notebook's debugging notes document every failure mode found and the evidence used to fix or rule out each candidate solution.
 
 ## Repository layout
 
@@ -47,15 +37,8 @@ Beyond the energy (all vs. exact diagonalization): on 12 sites the ansatz reprod
 
 ## Requirements & running
 
-Python ≥ 3.12 with `qiskit>=2.0` (tested on 2.3.0), `qiskit-aer` 0.17, `qiskit-algorithms`,
-`scipy`, `numpy`, `networkx`, `matplotlib`.
+Python ≥ 3.12 with `qiskit>=2.0` (tested on 2.3.0), `qiskit-aer` 0.17, `qiskit-algorithms`,`scipy`, `numpy`, `networkx`, `matplotlib`.
 
-The notebook is fully deterministic (fixed seeds) and self-contained: a top-to-bottom
-**Run All takes ~3.5–4 h** on a laptop (8 GB RAM is enough, but run the kernel alone —
-the 19-qubit cells use ~1 GB and the sweeps are CPU-heavy). Thanks to the persisted
-optima in `results/`, the analysis cells (Sec. 4.6) can also be run directly after
-executing only the two setup cells at the top.
+The notebook is fully deterministic (fixed seeds) and self-contained: a top-to-bottom **Run All takes ~3.5–4 h** on a laptop (8 GB RAM is enough, but run the kernel alone; the 19-qubit cells use ~1 GB and the sweeps are CPU-heavy). Thanks to the persisted optima in `results/`, the analysis cells (Sec. 4.6) can also be run directly after executing only the two setup cells at the top.
 
-
-A proof-of-concept implementation investigating whether progressively adding Heisenberg interaction layers to a variational ansatz can prepare a Quantum Spin Liquid (QSL) state without Hamiltonian calibration, while remaining competitive in terms of ground-state energy.
 

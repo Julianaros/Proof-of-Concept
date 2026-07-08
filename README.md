@@ -2,7 +2,7 @@
 
 ## The idea
 
-The paper compensates for the low expressiveness of a hardware-efficient `RealAmplitudes` ansatz by calibrating the Hamiltonian** ($J \to J' \approx 2$ on
+The paper compensates for the low expressiveness of a hardware-efficient `RealAmplitudes` ansatz by calibrating the Hamiltonian ($J \to J' \approx 2$ on
 the defect triangles). This PoC tests the opposite route: an ansatz built from Heisenberg (eSWAP) gates $U_H(\theta)=e^{-i\theta(XX+YY+ZZ)/4}$, which commute with $S^2_{\text{total}}$ and therefore stay in the correct spin sector by construction; no calibration needed ($J=1$ uniform throughout).
 
 ## Key results
